@@ -20,21 +20,32 @@ namespace NewGraficBoard001
     /// </summary>
     public partial class MainWindow : Window
     {
+        private CGame m_game;
         public MainWindow()
         {
             InitializeComponent();
-            Canvas MyCanvas = new Canvas();
-            MyCanvas.Width = 640;
-            MyCanvas.Height = 480;
-            Viewbox viewbox = new Viewbox();
-            viewbox.Child = MyCanvas;
-            Content = viewbox;
+            //Canvas MyCanvas = new Canvas();
+            //MyCanvas.Width = 640;
+            //MyCanvas.Height = 480;
+            //MyCanvas.Background = Brushes.Wheat;
+            //Viewbox viewbox = new Viewbox();
+            //viewbox.Child = MyCanvas;
+            //Content = viewbox;
 
-            CGame game = new CGame(ref MyCanvas);
-            game.Play();
-            CMarker marker = new CMarker(ref MyCanvas,"0");
-            marker.Draw();
+            m_game = new CGame(ref MyCanvas);
+            m_game.Play();
 
         }
+
+        private void MyCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Canvas can = sender as Canvas;
+            Point loc = e.GetPosition(can);
+            if (loc != null)
+            {
+                m_game.ClickEvent(loc);
+            }
+        }
+         
     }
 }
