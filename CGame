@@ -1,0 +1,23 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Controls;
+
+namespace NewGraficBoard001
+{
+    class CGame
+    {
+        private Canvas m_canvas;
+        public CGame(ref Canvas canvas)
+        {
+            m_canvas = canvas;
+        }
+        public void Play()
+        {
+            CBoard board = new CBoard(ref m_canvas, 6, 8);
+            board.Draw();
+        }
+    }
+}
